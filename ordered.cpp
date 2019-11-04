@@ -70,17 +70,17 @@ void linkedlist::insert(int a)
   	        	head=p;
   	        	return;
 		}
-		/*else if(p->info>temp->info&&p->info<temp->next->info)
+		else if(p->info>temp->info&&p->info<temp->next->info)
 		  {
 		  	p->next=temp->next;
 		  	temp->next=p;
 		  	return;
-		  }*/
-		  else if(temp->next==NULL&&p->info>temp->info)
+		  }
+		 /* else if(temp->next==NULL&&p->info>temp->info)
 		  {
 		  	temp->next=p;
 			return;
-		  }
+		  }*/
 		  else
 		  {
 		  	temp=temp->next;
