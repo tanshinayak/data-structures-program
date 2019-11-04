@@ -1,5 +1,5 @@
 #include<iostream>
-#include<conio.h>
+//#include<conio.h>
 using namespace std;
 struct node{
 	int info;
@@ -49,7 +49,7 @@ switch(choice)
 cout<<"If you want to continue then type 'y'"<<endl;
 cin>>ch;
 }while(ch=='y'||ch=='Y');
-getch();
+//getch();
 return 0;
 }
 void linkedlist::insert(int a)
@@ -62,39 +62,58 @@ void linkedlist::insert(int a)
   	head=p;
   }
   else{node *temp=head;
-  	while(temp!=NULL)
+  	while(temp->next!=NULL)
   	{
   		if(p->info<temp->info)
   		{
   			p->next=head;
-  	        head=p;
-  	        break;
-		  }
-		  else if(p->info>temp->info&&p->info<temp->next->info)
+  	        	head=p;
+  	        	return;
+		}
+		else if(p->info>temp->info&&p->info<temp->next->info)
 		  {
 		  	p->next=temp->next;
 		  	temp->next=p;
-		  	break;
+		  	return;
 		  }
 		  else if(temp->next==NULL&&p->info>temp->info)
 		  {
 		  	temp->next=p;
+			return;
 		  }
 		  else
 		  {
 		  	temp=temp->next;
 		  }
 	  }
+	/*if(temp->next==NULL&&p->info>temp->info)
+		  {
+		  	temp->next=p;
+			return;
+		  }*/
   }
 }
 void linkedlist::deletion(int x)
 {node *temp=head;
-  while(temp!=NULL)
+node* d;
+if(temp->next==NULL&&temp->info==x)
+{
+	delete temp;
+	head=NULL;
+	return;
+}
+  while(temp->next!=NULL)
   {
-  	if(temp->next->info==x)
+	if(head->info==x)
+	{
+		head=head->next;
+		delete temp;
+		return;
+	}
+  	else if(temp->next->info==x)
   	{
-  		node *d=temp->next;
-  		temp=temp->next->next;
+		d=temp->next;
+		temp->next=d->next;
   		d->next=NULL;
   		delete d;
   		return;
@@ -102,6 +121,7 @@ void linkedlist::deletion(int x)
 	else
 	{
 		temp=temp->next;
+		//d=temp->next;
 	}
   }
   cout<<"Element not present in the list"<<endl;
@@ -130,12 +150,12 @@ linkedlist::linkedlist()
 }
 void linkedlist::merge(const linkedlist ob)
 {
-	node *temp=head;
-	while(temp->next!=NULL)
+	node *temp=ob.head;
+	while(temp!=NULL)
 	{
+		insert(temp->info);
 		temp=temp->next;
 	}
-	temp->next=ob.head;
 }
 void linkedlist::input()
 {int l;
@@ -149,4 +169,3 @@ int x;
 		l--;
 	}
 }
-
