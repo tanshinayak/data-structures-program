@@ -1,7 +1,8 @@
 #include<iostream>
-#include<conio.h>
+//#include<conio.h>
 using namespace std;
 class sort{
+	int p;
 	int s,ar[10];
 	public:
 		void input();
@@ -12,7 +13,8 @@ class sort{
 };
 int main()
 {int choice;
-char ch;
+char ch,bla;
+ 
 sort a;
 a.input();
 	do{
@@ -36,7 +38,7 @@ a.input();
 		}cout<<"If you want to continue then type 'y' "<<endl;
 		cin>>ch;
 	}while(ch=='y'||ch=='Y');
-	getch();
+	//getch();
 	return 0;
 }
 void sort::input()
